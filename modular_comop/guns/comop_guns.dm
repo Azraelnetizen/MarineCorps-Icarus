@@ -40,9 +40,9 @@
 		T.tripmine_owner = src
 
 /obj/item/explosive/mine/tripmine/prime()
-	if(laser_beam)
-		qdel(laser_beam)
 	. = ..()
+	if (laser_beam)
+		qdel(laser_beam)
 
 /obj/effect/ebeam/tripmine
 	var/obj/item/explosive/mine/tripmine/tripmine_owner
