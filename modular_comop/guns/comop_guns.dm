@@ -1,8 +1,10 @@
+////////////////// TRIPMINE
+
 /obj/item/explosive/mine/tripmine
 	name = "\improper IMBEL Tripmine"
 	desc = "The IMBEL Tripmine is a directional laser-oriented smart mine of the FECB. It generates a laser that when touched, it explodes."
-	icon = 'icons/obj/items/weapons/grenade.dmi'
-	icon_state = "m20"
+	icon = 'modular_comop/guns/icons/tripmine.dmi'
+	icon_state = "tripmine"
 
 	var/datum/beam/laser_beam
 	var/turf/target
@@ -44,6 +46,10 @@
 		T.tripmine_owner = src
 		T.static_update_light()
 
+	// Update visibility based on smoke presence
+	for(var/obj/effect/ebeam/tripmine/T in laser_beam.elements)
+		T.update_visibility()
+
 /obj/item/explosive/mine/tripmine/prime()
 	. = ..()
 	if (laser_beam)
@@ -51,6 +57,22 @@
 
 /obj/effect/ebeam/tripmine
 	var/obj/item/explosive/mine/tripmine/tripmine_owner
+
+	// New proc to update visibility based on player proximity
+/obj/effect/ebeam/tripmine/proc/update_visibility()
+	var/player_nearby = FALSE
+	for(var/mob/living/carbon/human/H in view(1, src))
+		player_nearby = TRUE
+		break
+	var/smoke_nearby = FALSE
+	for(var/obj/effect/particle_effect/smoke/S in view(2, src))
+		smoke_nearby = TRUE
+		break
+	// Set alpha based on player proximity or smoke presence
+	alpha = (player_nearby || smoke_nearby) ? 255 : 0
+	// Schedule next check in 5 seconds
+	spawn(5)
+		update_visibility()
 
 /obj/effect/ebeam/tripmine/Crossed(atom/movable/AM)
 	. = ..()
