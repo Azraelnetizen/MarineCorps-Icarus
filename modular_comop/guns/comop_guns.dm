@@ -10,7 +10,6 @@
 	var/turf/target
 
 /obj/item/explosive/mine/tripmine/deploy_mine(mob/user, turf/target_turf)
-
 	if(!hard_iff_lock && user)
 		iff_signal = user.faction
 
