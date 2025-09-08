@@ -695,7 +695,6 @@
 #include "code\datums\statistics\random_facts\christmas_fact.dm"
 #include "code\datums\statistics\random_facts\damage_fact.dm"
 #include "code\datums\statistics\random_facts\ib_fact.dm"
-#include "modular_comop\code\iberian_restriction.dm"
 #include "code\datums\statistics\random_facts\kills_fact.dm"
 #include "code\datums\statistics\random_facts\random_fact.dm"
 #include "code\datums\statistics\random_facts\revives_fact.dm"
@@ -2703,5 +2702,6 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\_basemap.dm"
+#include "modular_comop\code\iberian_restriction.dm"
 #include "modular_comop\guns\comop_guns.dm"
 // END_INCLUDE

@@ -37,7 +37,12 @@
 		target_turf = next_turf
 	laser_beam = beam(target_turf, icon_state="laser_beam", icon='icons/effects/beam.dmi', beam_type=/obj/effect/ebeam/tripmine, maxdistance=max_dist)
 	for(var/obj/effect/ebeam/tripmine/T in laser_beam.elements)
+		T.light_system = STATIC_LIGHT
+		T.light_power = 1
+		T.light_range = 1
+		T.light_color = "#880808"
 		T.tripmine_owner = src
+		T.static_update_light()
 
 /obj/item/explosive/mine/tripmine/prime()
 	. = ..()
